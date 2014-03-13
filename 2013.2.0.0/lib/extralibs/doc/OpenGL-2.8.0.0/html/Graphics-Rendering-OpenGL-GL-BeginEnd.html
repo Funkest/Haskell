@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Graphics.Rendering.OpenGL.GL.BeginEnd</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Graphics-Rendering-OpenGL-GL-BeginEnd.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">OpenGL-2.8.0.0: A binding for the OpenGL graphics system</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Portability</th><td>portable</td></tr><tr><th>Stability</th><td>stable</td></tr><tr><th>Maintainer</th><td>sven.panne@aedion.de</td></tr><tr><th>Safe Haskell</th><td>None</td></tr></table><p class="caption">Graphics.Rendering.OpenGL.GL.BeginEnd</p></div><div id="table-of-contents"><p class="caption">Contents</p><ul><li><a href="#g:1">Begin and End Objects
+</a></li><li><a href="#g:2">Polygon Edges
+</a></li></ul></div><div id="description"><p class="caption">Description</p><div class="doc"><p>This module corresponds to section 2.6 (Begin/End Paradigm) of the
+ OpenGL 2.1 specs.
+</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><span class="keyword">data</span>  <a href="#t:PrimitiveMode">PrimitiveMode</a> <ul class="subs"><li>= <a href="#v:Points">Points</a>  </li><li>| <a href="#v:Lines">Lines</a>  </li><li>| <a href="#v:LineLoop">LineLoop</a>  </li><li>| <a href="#v:LineStrip">LineStrip</a>  </li><li>| <a href="#v:Triangles">Triangles</a>  </li><li>| <a href="#v:TriangleStrip">TriangleStrip</a>  </li><li>| <a href="#v:TriangleFan">TriangleFan</a>  </li><li>| <a href="#v:Quads">Quads</a>  </li><li>| <a href="#v:QuadStrip">QuadStrip</a>  </li><li>| <a href="#v:Polygon">Polygon</a>  </li></ul></li><li class="src short"><a href="#v:renderPrimitive">renderPrimitive</a> ::  <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a</li><li class="src short"><a href="#v:unsafeRenderPrimitive">unsafeRenderPrimitive</a> ::  <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a</li><li class="src short"><a href="#v:primitiveRestart">primitiveRestart</a> :: <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> ()</li><li class="src short"><span class="keyword">data</span>  <a href="#t:EdgeFlag">EdgeFlag</a> <ul class="subs"><li>= <a href="#v:BeginsInteriorEdge">BeginsInteriorEdge</a>  </li><li>| <a href="#v:BeginsBoundaryEdge">BeginsBoundaryEdge</a>  </li></ul></li><li class="src short"><a href="#v:edgeFlag">edgeFlag</a> :: <a href="Graphics-Rendering-OpenGL-GL-StateVar.html#t:StateVar">StateVar</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:EdgeFlag">EdgeFlag</a></li></ul></div><div id="interface"><h1 id="g:1">Begin and End Objects
+</h1><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:PrimitiveMode" class="def">PrimitiveMode</a>  </p><div class="doc"><p>Specification of the way the vertices given during <code>renderPrimitive</code> are
+ interpreted. In the description of the constructors, <em>n</em> is an integer count
+ starting at one, and <em>N</em> is the total number of vertices specified.
+</p></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Points" class="def">Points</a></td><td class="doc"><p>Treats each vertex as a single point. Vertex <em>n</em> defines point <em>n</em>.
+ <em>N</em> points are drawn.
+</p></td></tr><tr><td class="src"><a name="v:Lines" class="def">Lines</a></td><td class="doc"><p>Treats each pair of vertices as an independent line segment. Vertices
+ 2<em>n</em>-1 and 2<em>n</em> define line <em>n</em>. <em>N</em>/2 lines are drawn.
+</p></td></tr><tr><td class="src"><a name="v:LineLoop" class="def">LineLoop</a></td><td class="doc"><p>Draws a connected group of line segments from the first vertex to the
+ last, then back to the first. Vertices <em>n</em> and <em>n</em>+1 define line <em>n</em>.
+ The last line, however, is defined by vertices <em>N</em> and 1. <em>N</em> lines
+ are drawn.
+</p></td></tr><tr><td class="src"><a name="v:LineStrip" class="def">LineStrip</a></td><td class="doc"><p>Draws a connected group of line  segments from the first vertex to the
+ last. Vertices <em>n</em> and <em>n</em>+1 define line <em>n</em>. <em>N</em>-1 lines are drawn.
+</p></td></tr><tr><td class="src"><a name="v:Triangles" class="def">Triangles</a></td><td class="doc"><p>Treats each triplet of vertices as an independent triangle. Vertices
+ <em>3n-2</em>, <em>3n-1</em>, and <em>3n</em> define triangle <em>n</em>. <em>N\</em>3/ triangles are drawn.
+</p></td></tr><tr><td class="src"><a name="v:TriangleStrip" class="def">TriangleStrip</a></td><td class="doc"><p>Draws a connected group of triangles. One triangle is defined for each
+ vertex presented after the first two vertices. For odd <em>n</em>, vertices
+ <em>n</em>, <em>n</em>+1, and <em>n</em>+2 define triangle <em>n</em>. For even <em>n</em>, vertices <em>n</em>+1,
+ <em>n</em>, and <em>n</em>+2 define triangle <em>n</em>. <em>N</em>-2 triangles are drawn.
+</p></td></tr><tr><td class="src"><a name="v:TriangleFan" class="def">TriangleFan</a></td><td class="doc"><p>Draws a connected group of triangles. One triangle is defined for each
+ vertex presented after the first two vertices. Vertices 1, <em>n</em>+1, and
+ <em>n</em>+2 define triangle <em>n</em>. <em>N</em>-2 triangles are drawn.
+</p></td></tr><tr><td class="src"><a name="v:Quads" class="def">Quads</a></td><td class="doc"><p>Treats each group of four vertices as an independent quadrilateral.
+ Vertices 4<em>n</em>-3, 4<em>n</em>-2, 4<em>n</em>-1, and 4<em>n</em> define quadrilateral <em>n</em>.
+ <em>N</em>/4 quadrilaterals are drawn.
+</p></td></tr><tr><td class="src"><a name="v:QuadStrip" class="def">QuadStrip</a></td><td class="doc"><p>Draws a connected group of quadrilaterals. One quadrilateral is
+defined for each pair of vertices presented after the first pair.
+ Vertices 2<em>n</em>-1, 2<em>n</em>, 2<em>n</em>+2, and 2<em>n</em>+1 define quadrilateral <em>n</em>.
+ <em>N</em>/2-1 quadrilaterals are drawn. Note that the order in which vertices
+ are used to construct a quadrilateral from strip data is different from
+ that used with independent data.
+</p></td></tr><tr><td class="src"><a name="v:Polygon" class="def">Polygon</a></td><td class="doc"><p>Draws a single, convex polygon. Vertices 1 through <em>N</em> define this
+ polygon.
+</p></td></tr></table></div><div class="subs instances"><p id="control.i:PrimitiveMode" class="caption collapser" onclick="toggleSection('i:PrimitiveMode')">Instances</p><div id="section.i:PrimitiveMode" class="show"><table><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Eq.html#t:Eq">Eq</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Ord.html#t:Ord">Ord</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Text-Show.html#t:Show">Show</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a></td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:renderPrimitive" class="def">renderPrimitive</a> ::  <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a</p><div class="doc"><p>Delimit the vertices that define a primitive or a group of like primitives.
+</p><p>Only a subset of GL commands can be used in the delimited action:
+ Those for specifying vertex coordinates
+ (<code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:vertex">vertex</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:vertexv">vertexv</a></code>),
+ vertex colors
+ (<code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:color">color</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:colorv">colorv</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:secondaryColor">secondaryColor</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:secondaryColorv">secondaryColorv</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:index">index</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:indexv">indexv</a></code>),
+ normal
+ (<code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:normal">normal</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:normalv">normalv</a></code>),
+ texture coordinates
+ (<code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:texCoord">texCoord</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:texCoordv">texCoordv</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:multiTexCoord">multiTexCoord</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:multiTexCoordv">multiTexCoordv</a></code>),
+ and fog coordinates
+ (<code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:fogCoord">fogCoord</a></code>,
+  <code><a href="Graphics-Rendering-OpenGL-GL-VertexSpec.html#t:fogCoordv">fogCoordv</a></code>).
+ Additionally,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Evaluators.html#t:evalPoint1">evalPoint1</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Evaluators.html#t:evalPoint2">evalPoint2</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Evaluators.html#t:evalCoord1">evalCoord1</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Evaluators.html#t:evalCoord1v">evalCoord1v</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Evaluators.html#t:evalCoord2">evalCoord2</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Evaluators.html#t:evalCoord2v">evalCoord2v</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Colors.html#t:materialAmbient">materialAmbient</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Colors.html#t:materialDiffuse">materialDiffuse</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Colors.html#t:materialAmbientAndDiffuse">materialAmbientAndDiffuse</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Colors.html#t:materialSpecular">materialSpecular</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Colors.html#t:materialEmission">materialEmission</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-Colors.html#t:materialShininess">materialShininess</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-DisplayLists.html#t:callList">callList</a></code>,
+ <code><a href="Graphics-Rendering-OpenGL-GL-DisplayLists.html#t:callLists">callLists</a></code>,
+ and setting <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:edgeFlag">edgeFlag</a></code> are allowed. Writing the respective state variables
+ is allowed in the delimited action, too.
+</p><p>Regardless of the chosen <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a></code>, there is no limit to the number of
+ vertices that can be defined during a single <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:renderPrimitive">renderPrimitive</a></code>. Lines,
+ triangles, quadrilaterals, and polygons that are incompletely specified are
+ not drawn. Incomplete specification results when either too few vertices are
+ provided to specify even a single primitive or when an incorrect multiple of
+ vertices is specified. The incomplete primitive is ignored; the rest are
+ drawn.
+</p><p>The minimum specification of vertices for each primitive is as follows: 1
+ for a point, 2 for a line, 3 for a triangle, 4 for a quadrilateral, and 3 for
+ a polygon. Modes that require a certain multiple of vertices are <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:Lines">Lines</a></code> (2),
+ <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:Triangles">Triangles</a></code> (3), <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:Quads">Quads</a></code> (4), and <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:QuadStrip">QuadStrip</a></code> (2).
+</p></div></div><div class="top"><p class="src"><a name="v:unsafeRenderPrimitive" class="def">unsafeRenderPrimitive</a> ::  <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:PrimitiveMode">PrimitiveMode</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a</p><div class="doc"><p>A more efficient, but potentially dangerous version of <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:renderPrimitive">renderPrimitive</a></code>:
+ The given action is not allowed to throw an exception.
+</p></div></div><div class="top"><p class="src"><a name="v:primitiveRestart" class="def">primitiveRestart</a> :: <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> ()</p></div><h1 id="g:2">Polygon Edges
+</h1><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:EdgeFlag" class="def">EdgeFlag</a>  </p><div class="doc"><p>A vertex can begin an edge which lies in the interior of its polygon or on
+ the polygon's boundary.
+</p></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:BeginsInteriorEdge" class="def">BeginsInteriorEdge</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a name="v:BeginsBoundaryEdge" class="def">BeginsBoundaryEdge</a></td><td class="doc empty">&nbsp;</td></tr></table></div><div class="subs instances"><p id="control.i:EdgeFlag" class="caption collapser" onclick="toggleSection('i:EdgeFlag')">Instances</p><div id="section.i:EdgeFlag" class="show"><table><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Eq.html#t:Eq">Eq</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:EdgeFlag">EdgeFlag</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Ord.html#t:Ord">Ord</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:EdgeFlag">EdgeFlag</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Text-Show.html#t:Show">Show</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:EdgeFlag">EdgeFlag</a></td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:edgeFlag" class="def">edgeFlag</a> :: <a href="Graphics-Rendering-OpenGL-GL-StateVar.html#t:StateVar">StateVar</a> <a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#t:EdgeFlag">EdgeFlag</a></p><div class="doc"><p>Each vertex of a polygon, separate triangle, or separate quadrilateral
+ specified during <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:renderPrimitive">renderPrimitive</a></code> is marked as the start of either a boundary
+ or nonboundary (interior) edge.
+</p><p>The vertices of connected triangles and connected quadrilaterals are always
+ marked as boundary, regardless of the value of the edge flag.
+</p><p>Boundary and nonboundary edge flags on vertices are significant only if
+ <code><a href="Graphics-Rendering-OpenGL-GL-Polygons.html#t:polygonMode">polygonMode</a></code> is set to
+ <code><a href="Graphics-Rendering-OpenGL-GL-Polygons.html#t:Point">Point</a></code> or
+ <code><a href="Graphics-Rendering-OpenGL-GL-Polygons.html#t:Line">Line</a></code>.
+</p><p>Note that the current edge flag can be updated at any time, in particular
+ during <code><a href="Graphics-Rendering-OpenGL-GL-BeginEnd.html#v:renderPrimitive">renderPrimitive</a></code>.
+</p></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.13.2</p></div></body></html>

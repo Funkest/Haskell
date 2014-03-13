@@ -1,0 +1,20 @@
+[("GCC extra via C opts", " -fwrapv"),
+ ("C compiler command", "$topdir/../mingw/bin/gcc.exe"),
+ ("C compiler flags", " -fno-stack-protector  -Wl,--hash-size=31 -Wl,--reduce-memory-overheads"),
+ ("ar command", "$topdir/../mingw/bin/ar.exe"),
+ ("ar flags", "q"),
+ ("ar supports at file", "YES"),
+ ("touch command", "$topdir/touchy.exe"),
+ ("dllwrap command", "$topdir/../mingw/bin/dllwrap.exe"),
+ ("windres command", "$topdir/../mingw/bin/windres.exe"),
+ ("perl command", "$topdir/../perl/perl.exe"),
+ ("target os", "OSMinGW32"),
+ ("target arch", "ArchX86"),
+ ("target word size", "4"),
+ ("target has GNU nonexec stack", "False"),
+ ("target has .ident directive", "True"),
+ ("target has subsections via symbols", "False"),
+ ("LLVM llc command", ""),
+ ("LLVM opt command", "")
+ ]
+

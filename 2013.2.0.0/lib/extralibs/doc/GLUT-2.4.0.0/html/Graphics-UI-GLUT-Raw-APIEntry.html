@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Graphics.UI.GLUT.Raw.APIEntry</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Graphics-UI-GLUT-Raw-APIEntry.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">GLUT-2.4.0.0: A binding for the OpenGL Utility Toolkit</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Portability</th><td>portable</td></tr><tr><th>Stability</th><td>provisional</td></tr><tr><th>Maintainer</th><td>sven.panne@aedion.de</td></tr><tr><th>Safe Haskell</th><td>None</td></tr></table><p class="caption">Graphics.UI.GLUT.Raw.APIEntry</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>This is a purely internal module for handling an OpenGL-like extension
+ mechanism for GLUT.
+</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><span class="keyword">type</span> <a href="#t:Invoker">Invoker</a> a = <a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a -&gt; a</li><li class="src short"><a href="#v:getAPIEntry">getAPIEntry</a> ::  <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-String.html#t:String">String</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</li><li class="src short"><a href="#v:getAPIEntryInternal">getAPIEntryInternal</a> ::  <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-String.html#t:String">String</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</li><li class="src short"><span class="keyword">data</span>  <a href="#t:FunPtr">FunPtr</a> a</li><li class="src short"><a href="#v:unsafePerformIO">unsafePerformIO</a> ::  <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a -&gt; a</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><span class="keyword">type</span> <a name="t:Invoker" class="def">Invoker</a> a = <a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a -&gt; a</p></div><div class="top"><p class="src"><a name="v:getAPIEntry" class="def">getAPIEntry</a> ::  <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-String.html#t:String">String</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</p><div class="doc"><p>Retrieve a GLUT API entry by name. Throws a userError when no entry with
+ the given name was found.
+</p></div></div><div class="top"><p class="src"><a name="v:getAPIEntryInternal" class="def">getAPIEntryInternal</a> ::  <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-String.html#t:String">String</a> -&gt; <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</p></div><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:FunPtr" class="def">FunPtr</a> a </p><div class="doc"><p>A value of type <code><code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a></code> a</code> is a pointer to a function callable
+ from foreign code.  The type <code>a</code> will normally be a <em>foreign type</em>,
+ a function type with zero or more arguments where
+</p><ul><li> the argument types are <em>marshallable foreign types</em>,
+   i.e. <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Char.html#t:Char">Char</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Int.html#t:Int">Int</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Prelude.html#t:Double">Double</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Prelude.html#t:Float">Float</a></code>,
+   <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Bool.html#t:Bool">Bool</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Int.html#t:Int8">Int8</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Int.html#t:Int16">Int16</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Int.html#t:Int32">Int32</a></code>,
+   <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Int.html#t:Int64">Int64</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Word.html#t:Word8">Word8</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Word.html#t:Word16">Word16</a></code>,
+   <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Word.html#t:Word32">Word32</a></code>, <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Word.html#t:Word64">Word64</a></code>, <code><code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Foreign-Ptr.html#t:Ptr">Ptr</a></code> a</code>, <code><code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a></code> a</code>,
+   <code><code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Foreign-StablePtr.html#t:StablePtr">StablePtr</a></code> a</code> or a renaming of any of these
+   using <code>newtype</code>.
+</li><li> the return type is either a marshallable foreign type or has the form
+   <code><code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a></code> t</code> where <code>t</code> is a marshallable foreign type or <code>()</code>.
+</li></ul><p>A value of type <code><code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a></code> a</code> may be a pointer to a foreign function,
+ either returned by another foreign function or imported with a
+ a static address import like
+</p><pre> foreign import ccall &quot;stdlib.h &amp;free&quot;
+   p_free :: FunPtr (Ptr a -&gt; IO ())
+</pre><p>or a pointer to a Haskell function created using a <em>wrapper</em> stub
+ declared to produce a <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a></code> of the correct type.  For example:
+</p><pre> type Compare = Int -&gt; Int -&gt; Bool
+ foreign import ccall &quot;wrapper&quot;
+   mkCompare :: Compare -&gt; IO (FunPtr Compare)
+</pre><p>Calls to wrapper stubs like <code>mkCompare</code> allocate storage, which
+ should be released with <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Foreign-Ptr.html#t:freeHaskellFunPtr">freeHaskellFunPtr</a></code> when no
+ longer required.
+</p><p>To convert <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a></code> values to corresponding Haskell functions, one
+ can define a <em>dynamic</em> stub for the specific foreign type, e.g.
+</p><pre> type IntFunction = CInt -&gt; IO ()
+ foreign import ccall &quot;dynamic&quot; 
+   mkFun :: FunPtr IntFunction -&gt; IntFunction
+</pre></div><div class="subs instances"><p id="control.i:FunPtr" class="caption collapser" onclick="toggleSection('i:FunPtr')">Instances</p><div id="section.i:FunPtr" class="show"><table><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Eq.html#t:Eq">Eq</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Data-Ord.html#t:Ord">Ord</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Text-Show.html#t:Show">Show</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/Foreign-Storable.html#t:Storable">Storable</a> (<a href="Graphics-UI-GLUT-Raw-APIEntry.html#t:FunPtr">FunPtr</a> a)</td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:unsafePerformIO" class="def">unsafePerformIO</a> ::  <a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a> a -&gt; a</p><div class="doc"><p>This is the &quot;back door&quot; into the <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a></code> monad, allowing
+<code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a></code> computation to be performed at any time.  For
+this to be safe, the <code><a href="C:\ghc\ghc-7.6.3\lib/../doc/html/libraries/base-4.6.0.1/System-IO.html#t:IO">IO</a></code> computation should be
+free of side effects and independent of its environment.
+</p><p>If the I/O computation wrapped in <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code> performs side
+effects, then the relative order in which those side effects take
+place (relative to the main I/O trunk, or other calls to
+<code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code>) is indeterminate.  Furthermore, when using
+<code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code> to cause side-effects, you should take the following
+precautions to ensure the side effects are performed as many times as
+you expect them to be.  Note that these precautions are necessary for
+GHC, but may not be sufficient, and other compilers may require
+different precautions:
+</p><ul><li> Use <code>{-# NOINLINE foo #-}</code> as a pragma on any function <code>foo</code>
+        that calls <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code>.  If the call is inlined,
+        the I/O may be performed more than once.
+</li><li> Use the compiler flag <code>-fno-cse</code> to prevent common sub-expression
+        elimination being performed on the module, which might combine
+        two side effects that were meant to be separate.  A good example
+        is using multiple global variables (like <code>test</code> in the example below).
+</li><li> Make sure that the either you switch off let-floating (<code>-fno-full-laziness</code>), or that the 
+        call to <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code> cannot float outside a lambda.  For example, 
+        if you say:
+        <code>
+           f x = unsafePerformIO (newIORef [])
+        </code>
+        you may get only one reference cell shared between all calls to <code>f</code>.
+        Better would be
+        <code>
+           f x = unsafePerformIO (newIORef [x])
+        </code>
+        because now it can't float outside the lambda.
+</li></ul><p>It is less well known that
+<code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code> is not type safe.  For example:
+</p><pre>     test :: IORef [a]
+     test = unsafePerformIO $ newIORef []
+     
+     main = do
+             writeIORef test [42]
+             bang &lt;- readIORef test
+             print (bang :: [Char])
+</pre><p>This program will core dump.  This problem with polymorphic references
+is well known in the ML community, and does not arise with normal
+monadic use of references.  There is no easy way to make it impossible
+once you use <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code>.  Indeed, it is
+possible to write <code>coerce :: a -&gt; b</code> with the
+help of <code><a href="Graphics-UI-GLUT-Raw-APIEntry.html#v:unsafePerformIO">unsafePerformIO</a></code>.  So be careful!
+</p></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.13.2</p></div></body></html>
