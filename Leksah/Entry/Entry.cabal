@@ -1,0 +1,24 @@
+name: Entry
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: AllRightsReserved
+license-file: ""
+description:  
+data-dir: ""
+ 
+executable Entry
+    build-depends: HTTP -any, QuickCheck -any, base -any, tagsoup -any,
+                   utf8-string -any
+    main-is: Main.hs
+    buildable: True
+    hs-source-dirs: src
+ 
+test-suite test-Entry
+    build-depends: HTTP -any, QuickCheck -any, base -any, tagsoup -any,
+                   utf8-string -any
+    type: exitcode-stdio-1.0
+    main-is: Main.hs
+    buildable: True
+    cpp-options: -DMAIN_FUNCTION=testMain
+    hs-source-dirs: src

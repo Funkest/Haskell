@@ -1,0 +1,17 @@
+name:                XmlTest
+version:             0.1.0.0
+synopsis:            me
+description:         xml test
+homepage:            
+-- license:             BSD3
+-- license-file:        LICENSE
+author:              me
+maintainer:          
+copyright:           2013 Eric Rasmussen
+build-type:          Simple
+cabal-version:       >=1.8
+
+executable bin
+  main-is: divToH1.hs
+  build-depends: base       >= 4.5.0.0
+               , hxt        >= 9.3.1.4
